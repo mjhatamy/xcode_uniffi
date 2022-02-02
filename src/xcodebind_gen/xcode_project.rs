@@ -5,7 +5,9 @@ use colored::Colorize;
 use crc::{Crc, CRC_64_ECMA_182};
 use std::ffi::OsStr;
 use std::fs::{create_dir, create_dir_all, File};
+use std::io::Read;
 use std::io::Write;
+use std::path::PathBuf;
 use std::process::exit;
 
 // const APPLE_PRODUCT_TYPE_FRAMEWORK: &str = "com.apple.product-type.framework";
@@ -305,6 +307,8 @@ impl XcodeProject {
     }
 
     fn create_project(&self, items: Vec<PlistItem>) {
+        
+
         let project_dir = &self.package.xcode_framework_path;
         let project_name = &self.package.xcode_framework_name;
 
@@ -410,6 +414,16 @@ impl XcodeProject {
 
         let mut file = File::create(&framework_macos_tests_swift_file).unwrap_or_else(|_| panic!("Unable to create {:?} file", &framework_macos_tests_swift_file));
         file.write_all(SourceFileGenerator::create_swift_file(&self.package, true).as_bytes()).unwrap_or_else(|_| panic!("Failed to write data to {:?} file", &framework_macos_tests_swift_file));
+
+        let mut script_file = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+        script_file = script_file.join("scripts").join("rust-xc-universal-binary.sh");
+        let mut file = File::open(&script_file).unwrap_or_else(|_| panic!("Unable to open {:?} file", &script_file));
+        let mut scripts_file_contents = String::new();
+        file.read_to_string(&mut scripts_file_contents).unwrap_or_else(|_| panic!("Failed to read data from {:?} file", &script_file));
+
+        let dst_dir = &self.package.cargo_base_dir.join("rust-xc-universal-binary.sh");
+        let mut file = File::create(&dst_dir).unwrap_or_else(|_| panic!("Unable to create {:?} file", &dst_dir));
+        file.write_all(scripts_file_contents.as_bytes()).unwrap_or_else(|_| panic!("Failed to write data to {:?} file", &dst_dir));
     }
 
 }
