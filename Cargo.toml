@@ -1,7 +1,7 @@
 [package]
 name = "xcode_uniffi"
 version = "1.0.0"
-edition = "2022"
+edition = "2021"
 license = "MPL-2.0"
 authors = ["Jacob Hatami <mjhatamy@gmail.com>"]
 description = "Xcode framework generator/updater tool for rust UniFFI"
