@@ -1464,6 +1464,7 @@ impl PlistKeyValueItem {
     pub(crate) fn create_pbx_xc_build_configuration_section(
         base_bundle_identifier: &str,
         cargo_relative_path_to_xcode_project: &str,
+        cargo_lib_name: &str,
         xfw_name: &str,
         id_base: u64,
         id_maker: fn(u64, kind: &str, name: &str) -> String,
@@ -1517,6 +1518,7 @@ impl PlistKeyValueItem {
             ("GCC_WARN_UNINITIALIZED_AUTOS", "YES_AGGRESSIVE"),
             ("GCC_WARN_UNUSED_FUNCTION", "YES"),
             ("GCC_WARN_UNUSED_VARIABLE", "YES"),
+            ("OTHER_LDFLAGS", format!("\"-l{}\"", cargo_lib_name).as_str()),
             (
                 "HEADER_SEARCH_PATHS",
                 format!("\"$(SRCROOT)/rust_libs/{}\"", xfw_name).as_str(),
@@ -1624,6 +1626,7 @@ impl PlistKeyValueItem {
             ("GCC_WARN_UNINITIALIZED_AUTOS", "YES_AGGRESSIVE"),
             ("GCC_WARN_UNUSED_FUNCTION", "YES"),
             ("GCC_WARN_UNUSED_VARIABLE", "YES"),
+            ("OTHER_LDFLAGS", format!("\"-l{}\"", cargo_lib_name).as_str()),
             (
                 "HEADER_SEARCH_PATHS",
                 format!("\"$(SRCROOT)/rust_libs/{}\"", xfw_name).as_str(),
@@ -1699,7 +1702,6 @@ impl PlistKeyValueItem {
                 ("INFOPLIST_KEY_NSHumanReadableCopyright", "\"\""),
                 ("INSTALL_PATH", "\"$(LOCAL_LIBRARY_DIR)/Frameworks\""),
                 ("MARKETING_VERSION", "1.0"),
-                ("OTHER_LDFLAGS", "\"-lgix_guard_kit\""),
                 (
                     "PRODUCT_BUNDLE_IDENTIFIER",
                     format!("\"{}.{}-ios\"", base_bundle_identifier, xfw_name).as_str(),

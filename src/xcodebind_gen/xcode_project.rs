@@ -231,6 +231,7 @@ impl XcodeProject {
                     .to_path_buf()
                     .to_str()
                     .unwrap(),
+                    &self.package.target_name,
                 self.package.xcode_framework_name.as_str(),
                 self.id_base,
                 XcodeProject::make_id_inst,
