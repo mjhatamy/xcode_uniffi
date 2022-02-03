@@ -76,6 +76,21 @@ xcode_uniffi create
 
 By default, it will create Xcode Framework for iOS + iOS simulator + MacOS in:
 
+>It is recommended to run
+> ```bash
+> cargo build
+>```
+> A freshly downloaded or copied Rust project, required to update 'Cargo.lock' files, else you may see this error in your xcode files.
+>
+> **Xcode error log**
+>```bash
+> Showing All Messages
+> the lock file **Cargo.lock needs to be updated but --locked was passed to prevent this
+>```
+
+
+
+
 **< rust project root directory >/xcode/< Cargo Library name >**
 
 You can pass command line arguments to change the default values.
