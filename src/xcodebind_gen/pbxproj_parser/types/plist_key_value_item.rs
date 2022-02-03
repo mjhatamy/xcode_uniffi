@@ -1,5 +1,6 @@
 use crate::xcodebind_gen::helpers::*;
 use std::collections::HashMap;
+use std::fmt::format;
 use std::path::PathBuf;
 
 use super::*;
@@ -1706,7 +1707,7 @@ impl PlistKeyValueItem {
                     "PRODUCT_BUNDLE_IDENTIFIER",
                     format!("\"{}.{}-ios\"", base_bundle_identifier, xfw_name).as_str(),
                 ),
-                ("PRODUCT_NAME", "\"$(TARGET_NAME:c99extidentifier)\""),
+                ("PRODUCT_NAME", format!("{}", xfw_name).as_str() ), //"\"$(TARGET_NAME:c99extidentifier)\""),
                 ("SKIP_INSTALL", "YES"),
                 ("SWIFT_EMIT_LOC_STRINGS", "YES"),
                 ("SWIFT_VERSION", "5.0"),
@@ -1756,7 +1757,7 @@ impl PlistKeyValueItem {
                     "PRODUCT_BUNDLE_IDENTIFIER",
                     format!("\"{}.{}-iosTest\"", base_bundle_identifier, xfw_name).as_str(),
                 ),
-                ("PRODUCT_NAME", "\"$(TARGET_NAME)\""),
+                ("PRODUCT_NAME", format!("{}", xfw_name).as_str() ),
                 ("SWIFT_EMIT_LOC_STRINGS", "NO"),
                 ("SWIFT_VERSION", "5.0"),
                 ("TARGETED_DEVICE_FAMILY", "\"1,2\""),
