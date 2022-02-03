@@ -1,7 +1,8 @@
 # Xcode Framework Generator/Updater for Rust UniFFI
 
 >**ATTENTION: Setup your project for Rust UniFFI. This code only works if you have \*.UDL file**
->**UDL files are Mozilla UniFFI models**
+> 
+>**UDL files are Mozilla UniFFI models to use your rust library in swift or kotlin or python.**
 >***
 >**To learn more: [Runi Uniffi]**
 >
