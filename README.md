@@ -146,4 +146,10 @@ SUBCOMMANDS:
 > Still in progress
 
 
+### Xcode framework details
+
+Both Xcode iOS and MacOS frameworks project targets have same Product Name. 
+The reason is to make it simpler for Xcode cross-platform (ios/macos) projects using this framework without importing different swift framework.
+The name of the framework will be PasCal format of the Cargo library name, unless you change it using command line arguments.
+
 Author: [Jacob Hatami](mjhatamy@gmail.com)
