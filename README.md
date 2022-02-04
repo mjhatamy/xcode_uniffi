@@ -1,5 +1,15 @@
 # Xcode Framework Generator/Updater for Rust UniFFI
 
+> **IMPORTANT MESSAGE USE ONLY UniFFI_bindgen version ~< 0.16.0**
+> **Currently, using cargo install uniffi_bindgen, installs non released version 0.17.0 which produces incorrect library**
+> 
+> Only use following command :
+> 
+> ``bash
+> cargo install uniffi_bindgen --version 0.16.0
+> ``
+
+
 >**ATTENTION: Setup your project for Rust UniFFI. This code only works if you have \*.UDL file**
 > 
 >**UDL files are Mozilla UniFFI models to use your rust library in swift or kotlin or python.**
